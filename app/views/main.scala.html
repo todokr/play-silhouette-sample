@@ -14,20 +14,67 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="@assets.path("images/favicon.png")">
         <title>@title</title>
-        <link href="//fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,600" rel="stylesheet">
         <link href="//cdnjs.cloudflare.com/ajax/libs/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">
-        @webJarsUtil.locate("bootstrap.min.css").css()
-        @webJarsUtil.locate("bootstrap-theme.min.css").css()
+        @webJarsUtil.locate("bootswatch-united" ,"bootstrap.min.css").css()
         <link rel="stylesheet" href="@assets.path("styles/main.css")">
-            <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-            <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
     </head>
     <body>
-        <header class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
+        <header id="header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">Silhouette Sample</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+        <main class="container">
+            <div class="row">
+                @request.flash.get("error").map { msg =>
+                    <div class="col-md-6 col-md-offset-3 alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>@messages("error")</strong> @msg
+                    </div>
+                }
+                @request.flash.get("info").map { msg =>
+                    <div class="col-md-6 col-md-offset-3 alert alert-info">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>@messages("info")</strong> @msg
+                    </div>
+                }
+                @request.flash.get("success").map { msg =>
+                    <div class="col-md-6 col-md-offset-3 alert alert-success">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>@messages("success")</strong> @msg
+                    </div>
+                }
+                @content
+            </div>
+        </main>
+        @webJarsUtil.locate("jquery.min.js").script()
+        @webJarsUtil.locate("bootstrap.min.js").script()
+    </body>
+</html><div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">@messages("toggle.navigation")</span>
@@ -52,33 +99,3 @@
                     </ul>
                 </nav>
             </div>
-        </header>
-        <main class="container">
-            <div class="starter-template row">
-                @request.flash.get("error").map { msg =>
-                    <div class="col-md-6 col-md-offset-3 alert alert-danger">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <strong>@messages("error")</strong> @msg
-                    </div>
-                }
-                @request.flash.get("info").map { msg =>
-                    <div class="col-md-6 col-md-offset-3 alert alert-info">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <strong>@messages("info")</strong> @msg
-                    </div>
-                }
-                @request.flash.get("success").map { msg =>
-                    <div class="col-md-6 col-md-offset-3 alert alert-success">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <strong>@messages("success")</strong> @msg
-                    </div>
-                }
-                @content
-            </div>
-        </main>
-        @webJarsUtil.locate("jquery.min.js").script()
-        @webJarsUtil.locate("bootstrap.min.js").script()
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
-        <script src="@assets.path("javascripts/zxcvbnShim.js")"></script>
-    </body>
-</html>
