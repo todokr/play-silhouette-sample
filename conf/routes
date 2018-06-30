@@ -1,0 +1,8 @@
+GET         /              controllers.ApplicationController.mypage
+
+GET         /signup                 controllers.SignUpController.view()
+POST        /signup                 controllers.SignUpController.signUp()
+GET         /signup/activate/:tokenId controllers.ActivateAccountController.activate(tokenId)
+
+GET         /assets/*file                    controllers.Assets.versioned(file)
+->          /webjars                         webjars.Routes
