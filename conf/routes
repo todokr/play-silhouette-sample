@@ -4,5 +4,8 @@ GET         /signup                 controllers.SignUpController.view()
 POST        /signup                 controllers.SignUpController.signUp()
 GET         /signup/activate/:tokenId controllers.ActivateAccountController.activate(tokenId)
 
+GET         /signin                 controllers.SignInController.view()
+POST        /signin                 controllers.SignInController.signIn()
+
 GET         /assets/*file                    controllers.Assets.versioned(file)
 ->          /webjars                         webjars.Routes
