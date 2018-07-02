@@ -17,6 +17,14 @@ object DB {
     Future.successful(user)
   }
 
+  def findUser(email: String, password: String): Future[Option[User]] = {
+    val maybeUser = users.find {
+      case (_, u) =>
+        u.email == email && u.password == password
+    }.map(_._2)
+    Future.successful(maybeUser)
+  }
+
   def updateUser(user: User): Future[User] = {
     users.update(user.id, user)
     Future.successful(user)

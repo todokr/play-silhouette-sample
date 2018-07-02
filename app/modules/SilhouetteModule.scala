@@ -19,7 +19,7 @@ import net.ceedubs.ficus.readers.ValueReader
 import net.codingwell.scalaguice.ScalaModule
 import play.api.Configuration
 import play.api.mvc.{ Cookie, CookieHeaderEncoding }
-import services.{ SignUpService, SignUpServiceImpl, UserService }
+import services._
 
 class SilhouetteModule extends AbstractModule with ScalaModule {
   import scala.concurrent.ExecutionContext.Implicits.global
@@ -58,6 +58,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
   override def configure(): Unit = {
     bind[Silhouette[DefaultEnv]].to[SilhouetteProvider[DefaultEnv]]
     bind[SignUpService].to[SignUpServiceImpl]
+    bind[SignInService].to[SignInServiceImpl]
     bind[IdentityService[User]].toInstance(new UserService)
     bind[IDGenerator].toInstance(new SecureRandomIDGenerator())
     bind[EventBus].toInstance(EventBus())
